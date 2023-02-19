@@ -23,7 +23,8 @@ public class ToDoListService {
 
     public boolean isAllowed(User user,Integer id){
         TodoList item = todoListRepository.findById(id).orElseThrow(()->new ApiRequestException("List Not Found!!!"));
-        return item.getUser()==user;
+
+        return user.equals(item.getUser());
     }
 
     @Transactional
